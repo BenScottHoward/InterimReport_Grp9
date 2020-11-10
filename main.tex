@@ -195,24 +195,125 @@ With each cycle, the quality of the project will improve. }
 
 %Describe and analyse the results obtained. Again, for the UI development, you can present a screenshot, diagrams, list of functional requirements, etc. Also, please indicate what are the limitations of the experiments, and the implementation itself in terms of performance and flexibility
 %– how could it be extended or modified to suit similar, but different projects? Note again, that the results must reference the aims and methods. 
+  %We constructed a low-fidelity model for testing according to the reference aims and method.
 
-\paragragh{} 
+\paragraph{1. Database}
+
+\subparagraph{1.1 Student Table: It is currently set 'student' have the attributes of ‘name’, ‘ID’, ‘password’, ‘class’, and ‘gender’. ID and password are used for user login, others are user information.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./db_student.png}
+Student database table
+\end{figure}
+
+\subparagraph{1.2 Course Table: It is Currently set 'course has' ‘Number’, ‘Name’, and ‘credit’. Name or Number can be used to query courses, others are course information}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./db_course.png}
+Course database table
+\end{figure}
+
 \newpage
+
+\subparagraph{1.3 Student Course Table: This table associates students with courses. 'SNo' is the student account number, and'CNo' is the course number. The courses selected by the students will be saved to this table.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./db_studentCourse.png}
+Student Course database table
+\end{figure}
+
+\newpage
+
+\paragraph{2. User interface}
+
+\subparagraph{2.1 Login in UI: The login interface has two text boxes that accept the username and password, and some logos. It will be validated when the user completes the input. If the verification fails, a message "Incorrect account or password" will pop up. We set the password of the test account as ‘0’ by default, and the user can modify the password after logging in successfully. For the protection of user privacy, the password entered by the user will be replaced by asterisks, and the link to the privacy policy needs to be viewed and agreed upon before validating the the user password, a message of 'please read and agree to privacy policy before proceeding' will appear.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./UI_login.png}
+User login in page
+\end{figure}
+
+\newpage
+
+\subparagraph{2.2 Homepage UI: The homepage is used to post announcements. The navigation bar will always be on the left. The navigation bar has five parts, namely, avatar, course selection, view the courses user has selected, view student information and exit.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./UI_homepage.png}
+Homepage
+\end{figure}
+\newpage
+
+\subparagraph{2.3 Course Selection UI: This is the course selection page. We only inserted 10 courses for testing, so the course search function is currently not implemented. When there are enough courses, we can search according to the code or name of the course. After selecting the ‘selection’ check-box and submitting it, the back-end will update the students with the selected courses (update sc table), and users can query their own courses through the ‘selected courses’. If you click the ‘cancel’ button, all check-boxes will be recover. However, computing the best graduation path for students has not yet been realized. Our idea is to obtain all the courses that students need to pass based on the student's information, then screen out the failed courses and allocate them to each semester.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./UI_cs.png}
+Course Select page
+\end{figure}
+\newpage
+
+\subparagraph{2.4 Selected Courses UI: On the selected course page, the user can see the currently selected course, and the interface provides some basic information about the course. Students can do drop course.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./UI_mc.png}
+Selected Courses page
+\end{figure}
+
+\newpage
+
+\subparagraph{2.5 Student Information UI: This page is for browsing students’ personal information. Student information includes: ‘student name’, ‘student account’, ‘password’, ‘gender’, ‘class’, and ‘credits’. Students can modify basic personal information here, including name, password, gender, etc. Other information cannot be modified because the student account is constant, and other information is calculated based on the student's course. }
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=14cm]{./UI_si.png}
+Student Information page
+\end{figure}
+
+\newpage
+ 
+\paragraph{3. Summary: Our team has completed the construction of the project framework. }
+
+\paragraph{List of currently implemented functions:}
+\subparagraph{1. Connect the database to the program}
+\subparagraph{2. User login and logout}
+\subparagraph{3. Check the validity of the user}
+\subparagraph{4. Check all courses}
+\subparagraph{5. Query user selected courses}
+\subparagraph{6. Drop the course selected by the student}
+\subparagraph{7. Query student personal information}
+\subparagraph{8. Update student personal information}
+
+\paragraph{Unrealized functions:}
+\subparagraph{1. Supplement of course information. (For example, the premise of learning a certain course, the semester of a certain course.)}
+\subparagraph{2. Allow students to choose full-time, part-time or rest.}
+\subparagraph{3. Allow students to fill in a new major.}
+\subparagraph{4. Allow students to fine-tune the schedule.}
+\subparagraph{5. Students are required to provide completed courses, and the back-end feedbacks the courses that students need to complete according to the information, and calculates the best graduation path.}
+\subparagraph{6. Database functionality is not operating to requirements, the database running in app is for demonstration purposes only.}
+\subparagraph{Link to privacy policy and validation button at login page.}
+
+\newpage
+
+\paragraph{Our program still has some limitations: students cannot return after leaving the homepage, courses cannot be allocated according to major types, the database design and functionality is limited due to selecting appropriate check constraints that are compatible with the framework design, by using agile methods to continually improve the database structure these limitations can be over come by trial and error when creating more appropriate queries,  these are the main improvement targets in the future. 
+\para The performance of this program is very high because the code is very concise, so the system responds quickly. The flexibility of the program is relatively high, because the code is written norms for easy reading and modification. Each function is implemented by a separate class, and all functions can be easily understood. When adding or deleting functions, it will basically not affect the normal use of other functions. For example, I currently need to add a course attribute (courseNo), I only need to find the construction class of "course", and add this attribute in the constructor, and write setter and getter for the attribute. Then rebuild the course schedule in the database, and then call the courseNo of the course. Or I want to implement a function to query the number of people selected for a course in order to manage the course. I can set a variable ‘count’ to record the selection or drop of each course. Then write a function to accept the course number entered by the user and return the ‘count’ corresponding to this course. Course administrators can better manage courses.}
+
+\newpage
+
 
 \section{Ethics } %250 words
 %Describe any ethical issues that have arisen during the project and potential future ones, and how the group plans to mitigate them. 
 
-\paragraph {Data Security - The application will collect and store data from students, therefor the privacy of user data must be protected and kept confidential. The privacy policy will protect students and clearly document the expectation of all parties who use the application. Terms and conditions should also outline the users responsibilities and protect the University from liability.~\cite{Ladwig202050}}
+\paragraph {Data Security - The application will collect and store data from students, therefor the privacy of user data must be protected and kept confidential. The privacy policy will protect students and clearly document the expectation of all parties who use the application.
+\par The application will not progress past the login screen until the privacy policy is viewed and the user agrees to them, they will clearly outline what the policy is about, who the team represents, what information is collected, how it is collected and used. It will also inform the user how long the data is stored and where it is stored to avoid discarding every session afterwards. It will also outline the users rights under the relevant legislation, how to access the data and the process required to delete it, how to complain to the regulatory bodies. It will discuss security measures in place, the use of cookies and social plugins. The policy will be regularly updated and information pertaining to this process will be available to the user. Lastly there will be contact details for the group(company) where questions about the privacy policy and Application can be answered.The formation of the privacy policy framework was based upon researching similar such policies noteably   Terms and conditions should also outline the users responsibilities and protect the University from liability and a link to them is below the login page but does not prevent access to the application.~\cite{Ladwig202050}}
 \newpage
 
-\section{Self Reflection and project management} %2000 words
-%Discuss your personal experience while doing the project and your
-% Describe all self-directed learning necessary to achieve the results described before, as well as any challenges that you faced and how you overcame them.
-% Describe your individual contribution to the project, i.e. parts of the project that you were responsible for, or that you helped others. If you were the project manager, indicate that, as well as what were your responsibilities as the project manager.
-% Discuss how project management tools and procedures contributed to the results and the timely completion of the activities.
-% Give three examples of things that you would do differently if you were starting the project all over again. Why?
 
-\newpage
 \bibliographystyle{elsarticle-num}
 \bibliography{mybibfile}
 
@@ -220,7 +321,7 @@ With each cycle, the quality of the project will improve. }
 \emph{Contribution:}\\
 Benjamin \textsc Howard - Title, background, excpected outcomes(limitations), Ethics, Referencing, Proof reading, EER,   \\ % Student 1
 Damanjit \textsc Gill - Aims, expected outcomes, required tools research, Use case diagram.\\ % Student 2
-Yiming \textsc Yan -  Method and activity plan, interface prototype\\%Student 3
+Yiming \textsc Yan -  Result\\%Student 3
 
 
 
